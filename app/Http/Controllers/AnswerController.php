@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Answer;
 use App\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -70,15 +71,16 @@ class AnswerController extends Controller
      */
     public function update(Request $request, $question)
     {
-        $question = Question::where('question_id', $question);
-
+        $question = Question::where('question_id', $question)->first();
+        // dd($question);
         $attr = $request->validate([
             'answer_body' => 'required|max:255'
         ]);
 
-        auth()->user()->answer()->question()->update($attr, [
-            'user_id' => Auth::user()->id,
-            'question_id' => $question
+        Answer::create([
+            'user_id' => auth()->user()->id,
+            'question_id' => $question->question_id,
+            'answer_body' => $request->answer_body,
         ]);
 
         return redirect()->back();

@@ -20,6 +20,6 @@ class Question extends Model
 
     public function answer()
     {
-        return $this->belongsTo('App\Answer', 'question_id');
+        return $this->hasMany('App\Answer', 'question_id', 'question_id');
     }
 }

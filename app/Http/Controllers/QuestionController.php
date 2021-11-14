@@ -60,7 +60,7 @@ class QuestionController extends Controller
     public function show($question)
     {
         $question = Question::with('user', 'answer')->where('question_id', $question)->first();
-        // dd($question->toArray());
+
         return view('question.show', compact('question'));
     }
 

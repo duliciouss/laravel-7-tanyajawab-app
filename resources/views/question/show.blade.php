@@ -24,18 +24,13 @@
                             <textarea name="answer_body" id="answer_body" rows="5" class="form-control"></textarea>
                             <button type="submit" class="btn btn-primary mt-3">Answer</button>
                         </form>
-
-                        {{-- @foreach ($question as $questions)
-                        {{ $questions->answer()->answer_body }}
-                        @endforeach --}}
-                        
-
-                        {{-- @if (!$question->answer->count())
-
-                        @else
-                            
-                        @endif --}}
-                        
+                        <br>
+                        <h5><b>answer</b></h5>
+                        <ul>
+                            @foreach ($question->answer as $qa )
+                                <li>{{ $qa->answer_body }}</li>    
+                            @endforeach
+                        </ul>
                     </div>
                 </div>
             </div>
